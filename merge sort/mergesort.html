@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Algorithm</title>
+    <link rel="stylesheet" href="mergesort.css">
+</head>
+<body>
+    <header>
+        <h1>Merge Sort Algorithm</h1>
+    </header>
+    <section class="algorithm-explanation">
+        <h2>How It Works:</h2>
+        <p>The Merge Sort algorithm is a divide-and-conquer algorithm that sorts an array by dividing it into smaller subarrays, sorting those subarrays, and then merging them back together.</p>
+        <ul>
+            <li>Divide the unsorted array into two halves.</li>
+            <li>Recursively sort each half.</li>
+            <li>Merge the two sorted halves into a single sorted array.</li>
+        </ul>
+    </section>
+    <section class="code-example">
+        <h2>Python Implementation:</h2>
+        <pre>
+            <code>
+def merge(arr, left, mid, right):
+    n1 = mid - left + 1
+    n2 = right - mid
+
+    # Create temporary arrays
+    L = arr[left:mid + 1]
+    R = arr[mid + 1:right + 1]
+
+    i = j = 0
+    k = left
+
+    # Merge the temp arrays back into arr[left..right]
+    while i < len(L) and j < len(R):
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+
+    # Copy the remaining elements of L[], if any
+    while i < len(L):
+        arr[k] = L[i]
+        i += 1
+        k += 1
+
+    # Copy the remaining elements of R[], if any
+    while j < len(R):
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+def merge_sort(arr, left, right):
+    if left < right:
+        mid = (left + right) // 2
+
+        # Sort first and second halves
+        merge_sort(arr, left, mid)
+        merge_sort(arr, mid + 1, right)
+        merge(arr, left, mid, right)
+
+def print_array(arr):
+    for i in arr:
+        print(i, end=" ")
+    print()
+
+if __name__ == "__main__":
+    arr = [38, 27, 43, 3, 9, 82, 10]
+    print("Given array is")
+    print_array(arr)
+
+    merge_sort(arr, 0, len(arr) - 1)
+
+    print("\nSorted array is")
+    print_array(arr)
+            </code>
+        </pre>
+    </section>
+    <section class="visualization">
+        <h2>Visualization:</h2>
+        <a class="visualization-link" href="mergesort1.html" target="_blank">View MergeSort Visualization</a>
+    </section>
+</body>
+</html>

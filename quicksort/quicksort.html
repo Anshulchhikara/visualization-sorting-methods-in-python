@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Algorithm</title>
+    <link rel="stylesheet" href="quicksort.css">
+</head>
+<body>
+    <header>
+        <h1>Quick Sort Algorithm</h1>
+    </header>
+    <section class="algorithm-explanation">
+        <h2>How It Works:</h2>
+        <p>The Quick Sort algorithm is a divide-and-conquer algorithm that sorts an array of elements by selecting a pivot element, partitioning the array around the pivot, and recursively sorting the subarrays.</p>
+        <ul>
+            <li>Choose a pivot element from the array.</li>
+            <li>Partition the array around the pivot element.</li>
+            <li>Recursively sort the subarrays before and after the pivot element.</li>
+        </ul>
+    </section>
+    <section class="code-example">
+        <h2>Python Implementation:</h2>
+        <pre>
+            <code>
+def partition(arr, low, high):
+    pivot = arr[high]  # Pivot element
+    i = low - 1  # Index of the smaller element
+
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]  # Swap if the element is smaller than the pivot
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Move pivot to the correct position
+    return i + 1
+
+def quickSort(arr, low, high):
+    if low < high:
+        pivot = partition(arr, low, high)  # Get the pivot element
+
+        quickSort(arr, low, pivot - 1)  # Recursively sort the subarrays
+        quickSort(arr, pivot + 1, high)
+
+def printArray(arr):
+    for i in arr:
+        print(i, end=" ")
+    print()
+
+# Main function
+if __name__ == "__main__":
+    arr = [10, 7, 8, 9, 1, 5]
+    n = len(arr)
+
+    quickSort(arr, 0, n - 1)  # Call the quickSort function
+    print("Sorted array:")
+    printArray(arr)  # Print the sorted array
+            </code>
+        </pre>
+    </section>
+    <section class="visualization">
+        <h2>Visualization:</h2>
+        <a class="visualization-link" href="quicksort2.html" target="_blank">View QuickSort Visualization</a>
+    </section>
+</body>
+</html>
